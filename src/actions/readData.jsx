@@ -9,3 +9,5 @@ const readData = async () => {
   });
   return data;
 };
+
+export { readData };

@@ -1,7 +1,7 @@
 import React from "react";
 import { prismaInstance } from "../PrismaConnection/PrismaClientInstance";
 
-const writeData = async ({ description, targetTime, link }) => {
+const updateData = async ({ description, targetTime, link }) => {
   const data = await prismaInstance.banner.update({
     where: {
       id: 1,
@@ -14,3 +14,4 @@ const writeData = async ({ description, targetTime, link }) => {
   });
   return data;
 };
+export { updateData };
