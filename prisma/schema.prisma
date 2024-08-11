@@ -17,5 +17,5 @@ model Banner {
   id              Int     @id @default(autoincrement())
   description     String?
   targetTime      DateTime
-  link            Int     @unique
+  link            String     @unique
 }
