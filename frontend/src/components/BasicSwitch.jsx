@@ -3,6 +3,7 @@ import Switch from "@mui/material/Switch";
 import { Box, Typography } from "@mui/material";
 import { alpha, styled } from "@mui/material/styles";
 import { red } from "@mui/material/colors";
+import { useState } from "react";
 
 const label = { inputProps: { "aria-label": "Switch demo" } };
 
@@ -19,9 +20,19 @@ const RedSwitch = styled(Switch)(({ theme }) => ({
 }));
 
 export default function BasicSwitch() {
+  const [switchOn, setSwitchOn] = useState(true);
+  const handleToggle = () => {
+    setSwitchOn(!switchOn);
+  };
+
   return (
     <Box>
-      <RedSwitch {...label} defaultChecked />
+      <RedSwitch
+        checked={switchOn}
+        {...label}
+        onClick={handleToggle}
+        defaultChecked
+      />
     </Box>
   );
 }
