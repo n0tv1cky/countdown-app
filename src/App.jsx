@@ -5,6 +5,9 @@ import Navbar from "./components/Navbar";
 import { Banner } from "./components/Banner";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
+import { readData } from "./actions/readData";
+import { updateData } from "./actions/updateData";
+import { clearDate, clearDescription, clearLink } from "./actions/deleteData";
 
 const darkTheme = createTheme({
   palette: {
@@ -13,26 +16,17 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const [countdownTime, setCountdownTime] = useState("");
-  const serverUrl = import.meta.env.VITE_SERVER_URL;
-
   useEffect(() => {
-    fetchTime();
+    // readData();
+    // updateData({
+    //   description: "New description",
+    //   targetTime: "2023-12-31T23:59:59Z",
+    //   link: "https://example.com",
+    // });
+    // clearDescription();
+    // clearDate();
+    clearLink();
   }, []);
-
-  const fetchTime = async () => {
-    try {
-      const response = await fetch(`${serverUrl}/api/data`);
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const json = await response.json();
-      console.log("fetched data: ", json);
-      setCountdownTime(json.targetTime);
-    } catch (err) {
-      console.error(`Failed to fetch data from ${serverUrl}/api/data: `, err);
-    }
-  };
 
   return (
     <ThemeProvider theme={darkTheme}>
