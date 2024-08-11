@@ -9,6 +9,8 @@ import SettingsIcon from "@mui/icons-material/Settings";
 import BasicSwitch from "./BasicSwitch";
 import TextField from "@mui/material/TextField";
 import { display } from "@mui/system";
+import CustomDateTimePicker from "./CustomDateTimePicker";
+import { red } from "@mui/material/colors";
 
 const style = {
   position: "absolute",
@@ -84,12 +86,21 @@ export default function SettingsModal() {
                 multiline
                 rows={4}
                 // label="Outlined secondary"
-                color="warning"
-                focused
+                // focused
                 sx={{
                   width: "60%",
                 }}
               />
+            </Box>
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <CustomDateTimePicker label={"Choose Target Date & Time"} />
             </Box>
           </Box>
         </Fade>
