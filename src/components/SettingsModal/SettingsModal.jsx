@@ -6,11 +6,11 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SettingsIcon from "@mui/icons-material/Settings";
-import BasicSwitch from "./BasicSwitch";
-import TextField from "@mui/material/TextField";
 import { display } from "@mui/system";
-import CustomDateTimePicker from "./CustomDateTimePicker";
 import { red } from "@mui/material/colors";
+import { ToggleBannerDisplay } from "./ToggleBannerDisplay";
+import { BannerDescription } from "./BannerDescription";
+import { BannerTargetDateAndTime } from "./BannerTargetDateAndTime";
 
 const style = {
   position: "absolute",
@@ -61,50 +61,10 @@ export default function SettingsModal() {
             <Typography variant="h3" align="center">
               Settings
             </Typography>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-              }}
-            >
-              <Typography
-                // id="transition-modal-title"
-                variant="h5"
-                component="h2"
-              >
-                Toggle Banner Display
-              </Typography>
-              <BasicSwitch />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "column",
-                alignItems: "start",
-              }}
-            >
-              <Typography variant="h5">Banner Description</Typography>
-              <TextField
-                id="outlined-multiline-flexible"
-                multiline
-                rows={4}
-                sx={{
-                  width: "100%",
-                }}
-              />
-            </Box>
-            <Box
-              sx={{
-                display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "center",
-              }}
-            >
-              <CustomDateTimePicker label={"Choose Target Date & Time"} />
-            </Box>
-            <Button variant="outlined" color="primary">
+            <ToggleBannerDisplay />
+            <BannerDescription />
+            <BannerTargetDateAndTime />
+            <Button variant="outlined" color="primary" onClick={handleClose}>
               Close
             </Button>
           </Box>
