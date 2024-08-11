@@ -15,7 +15,7 @@ export default function CustomDateTimePicker() {
           alignItems: "start",
         }}
       >
-        <Typography variant="h6">Target Date & Time</Typography>
+        <Typography variant="h5">Target Date & Time</Typography>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDateTimePicker
             orientation="landscape"

@@ -17,15 +17,16 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "40rem",
-  height: "40rem",
+  width: "fit-content",
+  height: "fit-content",
   bgcolor: "#1f1f1f",
   border: "2px solid #000",
   boxShadow: 24,
-  p: 4,
+  padding: "4rem",
   display: "flex",
   flexDirection: "column",
   justifyContent: "center",
+  gap: "2rem",
 };
 
 export default function SettingsModal() {
@@ -34,7 +35,7 @@ export default function SettingsModal() {
   const handleClose = () => setOpen(false);
 
   return (
-    <div>
+    <Box>
       <Button
         onClick={handleOpen}
         variant="standard"
@@ -57,6 +58,9 @@ export default function SettingsModal() {
       >
         <Fade in={open}>
           <Box sx={style}>
+            <Typography variant="h3" align="center">
+              Settings
+            </Typography>
             <Box
               sx={{
                 display: "flex",
@@ -66,7 +70,7 @@ export default function SettingsModal() {
             >
               <Typography
                 // id="transition-modal-title"
-                variant="h6"
+                variant="h5"
                 component="h2"
               >
                 Toggle Banner Display
@@ -76,19 +80,17 @@ export default function SettingsModal() {
             <Box
               sx={{
                 display: "flex",
-                flexDirection: "row",
-                alignItems: "center",
+                flexDirection: "column",
+                alignItems: "start",
               }}
             >
-              <Typography variant="h6">Banner Description</Typography>
+              <Typography variant="h5">Banner Description</Typography>
               <TextField
                 id="outlined-multiline-flexible"
                 multiline
                 rows={4}
-                // label="Outlined secondary"
-                // focused
                 sx={{
-                  width: "60%",
+                  width: "100%",
                 }}
               />
             </Box>
@@ -102,9 +104,12 @@ export default function SettingsModal() {
             >
               <CustomDateTimePicker label={"Choose Target Date & Time"} />
             </Box>
+            <Button variant="outlined" color="primary">
+              Close
+            </Button>
           </Box>
         </Fade>
       </Modal>
-    </div>
+    </Box>
   );
 }
