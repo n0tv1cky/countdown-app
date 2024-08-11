@@ -6,14 +6,12 @@ import Fade from "@mui/material/Fade";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import SettingsIcon from "@mui/icons-material/Settings";
-import { display } from "@mui/system";
-import { red } from "@mui/material/colors";
+import { useState } from "react";
 import { ToggleBannerDisplay } from "./ToggleBannerDisplay";
 import { BannerDescription } from "./BannerDescription";
 import { BannerTargetDateAndTime } from "./BannerTargetDateAndTime";
-import { useState } from "react";
-import { readData } from "../../actions/readData";
 import { BannerLink } from "./BannerLink";
+import ConfirmationDialog from "../ConfirmationDialog";
 
 const style = {
   position: "absolute",
@@ -33,7 +31,9 @@ const style = {
 };
 
 export default function SettingsModal() {
-  const [modalOpen, setModalOpen] = React.useState(true);
+  const [modalOpen, setModalOpen] = React.useState(false);
+  const [confirmationOpen, setConfirmationOpen] = useState(false);
+  const [changesSaved, setChangesSaved] = useState(false);
   const [visibleSwitchOn, setVisibleSwitchOn] = useState(true);
   const [description, setDescription] = useState("");
   const [dateAndTime, setDateAndTime] = useState(null);
@@ -47,8 +47,19 @@ export default function SettingsModal() {
     // console.log("response", response);
     setModalOpen(true);
   };
+
+  const handleClose = () => {
+    if (!changesSaved) {
+      setConfirmationOpen(true);
+    } else setModalOpen(false);
+  };
+
   const handleSave = () => {
     setModalOpen(false);
+  };
+
+  const handleConfirmationClose = () => {
+    setConfirmationOpen(false);
   };
 
   return (
@@ -64,7 +75,7 @@ export default function SettingsModal() {
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
         open={modalOpen}
-        onClose={handleSave}
+        onClose={handleClose}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -91,6 +102,11 @@ export default function SettingsModal() {
           </Box>
         </Fade>
       </Modal>
+      <ConfirmationDialog
+        open={confirmationOpen}
+        onClose={handleConfirmationClose}
+        message="Please SAVE changes before exiting"
+      />
     </Box>
   );
 }
