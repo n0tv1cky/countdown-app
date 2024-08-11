@@ -12,6 +12,8 @@ import { ToggleBannerDisplay } from "./ToggleBannerDisplay";
 import { BannerDescription } from "./BannerDescription";
 import { BannerTargetDateAndTime } from "./BannerTargetDateAndTime";
 import { useState } from "react";
+import { readData } from "../../actions/readData";
+import { BannerLink } from "./BannerLink";
 
 const style = {
   position: "absolute",
@@ -35,8 +37,16 @@ export default function SettingsModal() {
   const [visibleSwitchOn, setVisibleSwitchOn] = useState(true);
   const [description, setDescription] = useState("");
   const [dateAndTime, setDateAndTime] = useState(null);
+  const [link, setLink] = useState("");
 
-  const handleOpen = () => setModalOpen(true);
+  const handleOpen = () => {
+    // const response = readData();
+    // if(response.description !== "") {
+
+    // }
+    // console.log("response", response);
+    setModalOpen(true);
+  };
   const handleSave = () => {
     setModalOpen(false);
   };
@@ -73,6 +83,7 @@ export default function SettingsModal() {
               setVisibleSwitchOn={setVisibleSwitchOn}
             />
             <BannerDescription setDescription={setDescription} />
+            <BannerLink setLink={setLink} />
             <BannerTargetDateAndTime setDateAndTime={setDateAndTime} />
             <Button variant="outlined" color="success" onClick={handleSave}>
               Save
