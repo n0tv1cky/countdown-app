@@ -19,20 +19,14 @@ const RedSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-export default function BasicSwitch() {
-  const [switchOn, setSwitchOn] = useState(true);
+export default function BasicSwitch({ visibleSwitchOn, setVisibleSwitchOn }) {
   const handleToggle = () => {
-    setSwitchOn(!switchOn);
+    setVisibleSwitchOn(!visibleSwitchOn);
   };
 
   return (
     <Box>
-      <RedSwitch
-        checked={switchOn}
-        {...label}
-        onClick={handleToggle}
-        defaultChecked
-      />
+      <RedSwitch checked={visibleSwitchOn} {...label} onClick={handleToggle} />
     </Box>
   );
 }

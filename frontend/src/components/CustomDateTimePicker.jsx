@@ -5,7 +5,12 @@ import { StaticDateTimePicker } from "@mui/x-date-pickers/StaticDateTimePicker";
 import { Typography } from "@mui/material";
 import Box from "@mui/material/Box";
 
-export default function CustomDateTimePicker() {
+export default function CustomDateTimePicker({ setDateAndTime }) {
+  const handleSetDateTime = (newDateTime) => {
+    console.log("newDateTime: ", newDateTime);
+    setDateAndTime(newDateTime);
+  };
+
   return (
     <>
       <Box
@@ -19,12 +24,7 @@ export default function CustomDateTimePicker() {
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDateTimePicker
             orientation="landscape"
-            components={{
-              Toolbar: (props) => (
-                <PickersToolbar {...props} title="Custom Toolbar" />
-              ),
-              Day: (props) => <PickersDay {...props} disableMargin />,
-            }}
+            onAccept={handleSetDateTime}
           />
         </LocalizationProvider>
       </Box>

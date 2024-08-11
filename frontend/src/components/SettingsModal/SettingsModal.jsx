@@ -11,6 +11,7 @@ import { red } from "@mui/material/colors";
 import { ToggleBannerDisplay } from "./ToggleBannerDisplay";
 import { BannerDescription } from "./BannerDescription";
 import { BannerTargetDateAndTime } from "./BannerTargetDateAndTime";
+import { useState } from "react";
 
 const style = {
   position: "absolute",
@@ -30,9 +31,15 @@ const style = {
 };
 
 export default function SettingsModal() {
-  const [open, setOpen] = React.useState(true);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const [modalOpen, setModalOpen] = React.useState(true);
+  const [visibleSwitchOn, setVisibleSwitchOn] = useState(true);
+  const [description, setDescription] = useState("");
+  const [dateAndTime, setDateAndTime] = useState(null);
+
+  const handleOpen = () => setModalOpen(true);
+  const handleSave = () => {
+    setModalOpen(false);
+  };
 
   return (
     <Box>
@@ -46,8 +53,8 @@ export default function SettingsModal() {
       <Modal
         aria-labelledby="transition-modal-title"
         aria-describedby="transition-modal-description"
-        open={open}
-        onClose={handleClose}
+        open={modalOpen}
+        onClose={handleSave}
         closeAfterTransition
         slots={{ backdrop: Backdrop }}
         slotProps={{
@@ -56,16 +63,19 @@ export default function SettingsModal() {
           },
         }}
       >
-        <Fade in={open}>
+        <Fade in={modalOpen}>
           <Box sx={style}>
             <Typography variant="h3" align="center">
               Settings
             </Typography>
-            <ToggleBannerDisplay />
-            <BannerDescription />
-            <BannerTargetDateAndTime />
-            <Button variant="outlined" color="primary" onClick={handleClose}>
-              Close
+            <ToggleBannerDisplay
+              visibleSwitchOn={visibleSwitchOn}
+              setVisibleSwitchOn={setVisibleSwitchOn}
+            />
+            <BannerDescription setDescription={setDescription} />
+            <BannerTargetDateAndTime setDateAndTime={setDateAndTime} />
+            <Button variant="outlined" color="success" onClick={handleSave}>
+              Save
             </Button>
           </Box>
         </Fade>

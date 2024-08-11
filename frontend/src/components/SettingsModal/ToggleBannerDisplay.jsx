@@ -2,7 +2,10 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import BasicSwitch from "../BasicSwitch";
 
-export const ToggleBannerDisplay = () => {
+export const ToggleBannerDisplay = ({
+  visibleSwitchOn,
+  setVisibleSwitchOn,
+}) => {
   return (
     <Box
       sx={{
@@ -18,7 +21,10 @@ export const ToggleBannerDisplay = () => {
       >
         Toggle Banner Display
       </Typography>
-      <BasicSwitch />
+      <BasicSwitch
+        visibleSwitchOn={visibleSwitchOn}
+        setVisibleSwitchOn={setVisibleSwitchOn}
+      />
     </Box>
   );
 };
