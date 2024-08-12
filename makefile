@@ -10,10 +10,10 @@ ui:
 	cd $(UI_DIR) && npm run dev
 
 build-ui:
-	cd $(UI_DIR) && vite build
+	cd $(UI_DIR) && npm run build && npm run preview
 
 server:
 	cd $(SERVER_DIR) && node server.js
 
 prisma-studio:
-	cd $(PRISMA_DIR) npx prisma generate && npx prisma db push && npx prisma studio
+	cd $(SERVER_DIR) npx prisma generate && npx prisma db push && npx prisma studio
