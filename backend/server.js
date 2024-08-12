@@ -28,11 +28,11 @@ app.get("/api/data", async (req, res) => {
 
 // Update data
 app.put("/api/update", async (req, res) => {
-  const { description, targetTime, link } = req.body;
+  const { description, targetTime, link, visible } = req.body;
   try {
     const data = await prisma.banner.update({
       where: { id: 1 },
-      data: { description, targetTime, link },
+      data: { description, targetTime, link, visible },
     });
     res.json(data);
   } catch (error) {

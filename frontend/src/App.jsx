@@ -18,11 +18,12 @@ const darkTheme = createTheme({
 function App() {
   useEffect(() => {
     // readData();
-    // updateData({
-    //   description: "New description",
-    //   targetTime: "2023-12-31T23:59:59Z",
-    //   link: "https://example.com",
-    // });
+    updateData({
+      description: "New description",
+      targetTime: "2023-12-31T23:59:59Z",
+      link: "https://example.com",
+      visible: true,
+    });
     // clearDescription();
     // clearDate();
     // clearLink();
