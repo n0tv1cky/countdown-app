@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
-export const BannerDescription = ({ setDescription }) => {
+export const BannerDescription = ({ description, setDescription }) => {
   return (
     <Box
       sx={{
@@ -21,6 +21,7 @@ export const BannerDescription = ({ setDescription }) => {
           width: "100%",
         }}
         onChange={(e) => setDescription(e.target.value)}
+        defaultValue={description}
       />
     </Box>
   );

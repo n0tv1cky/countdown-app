@@ -2,7 +2,7 @@ import React from "react";
 import { Box, Typography } from "@mui/material";
 import TextField from "@mui/material/TextField";
 
-export const BannerLink = ({ setLink }) => {
+export const BannerLink = ({ link, setLink }) => {
   return (
     <Box
       sx={{
@@ -20,6 +20,7 @@ export const BannerLink = ({ setLink }) => {
           width: "100%",
         }}
         onChange={(e) => setLink(e.target.value)}
+        defaultValue={link}
       />
     </Box>
   );

@@ -2,7 +2,7 @@ import React from "react";
 import CustomDateTimePicker from "../CustomDateTimePicker";
 import { Box, Typography } from "@mui/material";
 
-export const BannerTargetDateAndTime = ({ setDateAndTime }) => {
+export const BannerTargetDateAndTime = ({ dateAndTime, setDateAndTime }) => {
   return (
     <Box
       sx={{
@@ -12,7 +12,10 @@ export const BannerTargetDateAndTime = ({ setDateAndTime }) => {
         justifyContent: "center",
       }}
     >
-      <CustomDateTimePicker setDateAndTime={setDateAndTime} />
+      <CustomDateTimePicker
+        dateAndTime={dateAndTime}
+        setDateAndTime={setDateAndTime}
+      />
     </Box>
   );
 };

@@ -13,6 +13,7 @@ import { BannerTargetDateAndTime } from "./BannerTargetDateAndTime";
 import { BannerLink } from "./BannerLink";
 import ConfirmationDialog from "../ConfirmationDialog";
 import { updateData } from "../../actions/updateData";
+import { readData } from "../../actions/readData";
 
 const style = {
   position: "absolute",
@@ -36,16 +37,17 @@ export default function SettingsModal({ updateBannerData }) {
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [changesSaved, setChangesSaved] = useState(false);
   const [visibleSwitchOn, setVisibleSwitchOn] = useState(true);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState("default");
   const [dateAndTime, setDateAndTime] = useState("");
   const [link, setLink] = useState("");
 
-  const handleOpen = () => {
-    // const response = readData();
-    // if(response.description !== "") {
-
-    // }
-    // console.log("response", response);
+  const handleOpen = async () => {
+    const response = await readData();
+    console.log("handleOpen updateData", response);
+    setVisibleSwitchOn(response.visible);
+    setDescription(response.description);
+    setLink(response.link);
+    setDateAndTime(response.targetTime);
     setModalOpen(true);
   };
 
@@ -56,8 +58,6 @@ export default function SettingsModal({ updateBannerData }) {
   };
 
   const handleSave = () => {
-    // Add all db update functions
-    // console.log("dateAndTime: ", dateAndTime);
     const data = {
       description: description,
       targetTime: dateAndTime,
@@ -67,6 +67,10 @@ export default function SettingsModal({ updateBannerData }) {
     console.log("Data being sent to /update:", data);
     updateData(data);
     updateBannerData(data);
+    setModalOpen(false);
+  };
+
+  const handleCancel = () => {
     setModalOpen(false);
   };
 
@@ -105,12 +109,30 @@ export default function SettingsModal({ updateBannerData }) {
               visibleSwitchOn={visibleSwitchOn}
               setVisibleSwitchOn={setVisibleSwitchOn}
             />
-            <BannerDescription setDescription={setDescription} />
-            <BannerLink setLink={setLink} />
-            <BannerTargetDateAndTime setDateAndTime={setDateAndTime} />
-            <Button variant="outlined" color="success" onClick={handleSave}>
-              Save
-            </Button>
+            <BannerDescription
+              description={description}
+              setDescription={setDescription}
+            />
+            <BannerLink link={link} setLink={setLink} />
+            <BannerTargetDateAndTime
+              dateAndTime={dateAndTime}
+              setDateAndTime={setDateAndTime}
+            />
+            <Box
+              sx={{
+                display: "flex",
+                flexDirection: "column",
+                width: "100%",
+                gap: "0.5rem",
+              }}
+            >
+              <Button variant="outlined" color="success" onClick={handleSave}>
+                Save
+              </Button>
+              <Button variant="outlined" color="error" onClick={handleCancel}>
+                Cancel
+              </Button>
+            </Box>
           </Box>
         </Fade>
       </Modal>
