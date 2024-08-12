@@ -10,7 +10,6 @@ ui:
 	cd $(UI_DIR) && npm run dev
 
 build-ui:
-	dev-ui:
 	cd $(UI_DIR) && npm run dev
 
 server:
