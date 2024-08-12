@@ -29,7 +29,7 @@ function App() {
       setLoading(false);
     } catch (error) {
       setErrorMessage(
-        "Please wait while the server container is being spun up, usually takes ~ 50s"
+        "Please wait while the server container is being spun up, usually takes ~ 50s \n Refresh the page after a minute"
       );
       setLoading(false);
     }
