@@ -15,23 +15,26 @@ import ConfirmationDialog from "../ConfirmationDialog";
 import { updateData } from "../../actions/updateData";
 import { readData } from "../../actions/readData";
 import CloseIcon from "@mui/icons-material/Close";
+import { useMediaQuery } from "@mui/material";
 
-const style = {
+const style = (isSmallScreen) => ({
   position: "absolute",
   top: "50%",
   left: "50%",
   transform: "translate(-50%, -50%)",
-  width: "fit-content",
+  width: isSmallScreen ? "90%" : "fit-content",
   height: "fit-content",
+  maxHeight: "80vh",
+  overflow: "auto",
   bgcolor: "#1f1f1f",
   border: "2px solid #000",
   boxShadow: 24,
-  padding: "4rem",
+  padding: isSmallScreen ? "1rem" : "3rem",
   display: "flex",
   flexDirection: "column",
-  justifyContent: "center",
-  gap: "2rem",
-};
+  justifyContent: "start",
+  gap: isSmallScreen ? "1rem" : "2rem",
+});
 
 export default function SettingsModal({ updateBannerData }) {
   const [modalOpen, setModalOpen] = React.useState(false);
@@ -79,6 +82,8 @@ export default function SettingsModal({ updateBannerData }) {
     setConfirmationOpen(false);
   };
 
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   return (
     <Box>
       <Button
@@ -102,8 +107,8 @@ export default function SettingsModal({ updateBannerData }) {
         }}
       >
         <Fade in={modalOpen}>
-          <Box sx={style}>
-            <Typography variant="h3" align="center">
+          <Box sx={style(isSmallScreen)}>
+            <Typography variant={isSmallScreen ? "h5" : "h4"} align="center">
               Settings
             </Typography>
             <ToggleBannerDisplay
@@ -134,8 +139,8 @@ export default function SettingsModal({ updateBannerData }) {
             <Button
               sx={{
                 position: "absolute",
-                top: "2rem",
-                right: "2rem",
+                top: "1rem",
+                right: "1rem",
                 borderRadius: "2rem",
               }}
               variant="outlined"

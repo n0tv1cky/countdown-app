@@ -1,4 +1,4 @@
-import { Typography } from "@mui/material";
+import { Typography, useMediaQuery } from "@mui/material";
 import React from "react";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
@@ -46,6 +46,8 @@ export const Banner = ({ bannerData }) => {
     return () => clearInterval(timer);
   }, [bannerData]);
 
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
+
   return (
     <>
       <Box
@@ -53,12 +55,18 @@ export const Banner = ({ bannerData }) => {
           display: "flex",
           flexDirection: "column",
           gap: "2rem",
+          justifyContent: "start",
+          overflow: "auto",
+          mt: isSmallScreen ? "3rem" : "5rem",
         }}
       >
-        <Typography variant="h2" fontWeight="bold">
+        <Typography variant={isSmallScreen ? "h4" : "h3"} fontWeight="bold">
           Exciting Announcement in
         </Typography>
-        <Typography variant="h1" fontFamily="monospace">
+        <Typography
+          variant={isSmallScreen ? "h2" : "h1"}
+          fontFamily="monospace"
+        >
           {`${timeLeft.days}`}
           <span style={redStyle}>d</span>
           {` ${timeLeft.hours}`}
@@ -68,11 +76,11 @@ export const Banner = ({ bannerData }) => {
           {` ${timeLeft.seconds}`}
           <span style={redStyle}>s</span>
         </Typography>
-        <Typography variant="h4">{bannerData.description}</Typography>
+        <Typography variant="h5">{bannerData.description}</Typography>
         {bannerData.link && (
           <Typography variant="h6">
             <Link
-            underline="hover"
+              underline="hover"
               href={bannerData?.link}
               sx={{
                 color: red[700],

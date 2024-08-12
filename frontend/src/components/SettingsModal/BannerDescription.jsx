@@ -11,12 +11,12 @@ export const BannerDescription = ({ description, setDescription }) => {
         alignItems: "start",
       }}
     >
-      <Typography variant="h5">Banner Description</Typography>
+      <Typography variant="h6">Banner Description</Typography>
       <TextField
         id="outlined-multiline-flexible"
         placeholder="Enter Description here"
         multiline
-        rows={4}
+        maxRows={4}
         sx={{
           width: "100%",
         }}

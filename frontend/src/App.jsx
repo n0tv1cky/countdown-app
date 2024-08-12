@@ -1,13 +1,11 @@
 import { useEffect, useState } from "react";
-import { Box, Typography } from "@mui/material";
+import { Box, Typography, CircularProgress } from "@mui/material";
 import "./App.css";
 import Navbar from "./components/Navbar";
 import { Banner } from "./components/Banner";
 import { ThemeProvider, createTheme } from "@mui/material/styles";
 import CssBaseline from "@mui/material/CssBaseline";
 import { readData } from "./actions/readData";
-import { updateData } from "./actions/updateData";
-import { clearDate, clearDescription, clearLink } from "./actions/deleteData";
 
 const darkTheme = createTheme({
   palette: {
@@ -20,11 +18,19 @@ const darkTheme = createTheme({
 });
 
 function App() {
-  const [bannerData, setBannerData] = useState("No target time set");
+  const [bannerData, setBannerData] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
-    const data = await readData();
-    setBannerData(data);
+    try {
+      const data = await readData();
+      setBannerData(data);
+      setLoading(false);
+    } catch (error) {
+      setErrorMessage("Please wait while the server container is spun up");
+      setLoading(false);
+    }
   };
 
   const updateBannerData = (data) => {
@@ -34,16 +40,6 @@ function App() {
 
   useEffect(() => {
     fetchData();
-
-    // updateData({
-    //   description: "New description",
-    //   targetTime: "2023-12-31T23:59:59Z",
-    //   link: "https://example.com",
-    //   visible: true,
-    // });
-    // clearDescription();
-    // clearDate();
-    // clearLink();
   }, []);
 
   return (
@@ -51,11 +47,23 @@ function App() {
       <CssBaseline />
       <Box>
         <Navbar updateBannerData={updateBannerData} />
-        {bannerData.visible ? (
+        {loading ? (
+          <Box
+            display="flex"
+            justifyContent="center"
+            alignItems="center"
+            height="100vh"
+          >
+            <CircularProgress />
+            <Typography variant="h6" sx={{ marginLeft: "1rem" }}>
+              {errorMessage || "Loading..."}
+            </Typography>
+          </Box>
+        ) : bannerData?.visible ? (
           <Banner bannerData={bannerData} />
         ) : (
-          <Typography variant="h3">
-            Please choose a date and time to show timer
+          <Typography variant="h4">
+            Please choose a date and time to show the timer
           </Typography>
         )}
       </Box>

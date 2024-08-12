@@ -11,7 +11,7 @@ export const BannerLink = ({ link, setLink }) => {
         alignItems: "start",
       }}
     >
-      <Typography variant="h5">Banner Link</Typography>
+      <Typography variant="h6">Banner Link</Typography>
       <TextField
         id="outlined-multiline-flexible"
         placeholder="Enter Link here"

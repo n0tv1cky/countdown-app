@@ -12,13 +12,10 @@ export const ToggleBannerDisplay = ({
         display: "flex",
         flexDirection: "row",
         alignItems: "center",
+        justifyContent: "space-between",
       }}
     >
-      <Typography
-        // id="transition-modal-title"
-        variant="h5"
-        component="h2"
-      >
+      <Typography variant="h6" component="h3">
         Toggle Banner Display
       </Typography>
       <BasicSwitch

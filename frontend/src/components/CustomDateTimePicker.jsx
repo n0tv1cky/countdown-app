@@ -8,6 +8,7 @@ import dayjs from "dayjs";
 import Snackbar from "@mui/material/Snackbar";
 import Alert from "@mui/material/Alert";
 import { useState } from "react";
+import { useMediaQuery } from "@mui/material";
 
 export default function CustomDateTimePicker({ dateAndTime, setDateAndTime }) {
   const [openSnackbar, setOpenSnackbar] = useState(false);
@@ -21,6 +22,8 @@ export default function CustomDateTimePicker({ dateAndTime, setDateAndTime }) {
   const handleCloseSnackbar = () => {
     setOpenSnackbar(false);
   };
+
+  const isSmallScreen = useMediaQuery((theme) => theme.breakpoints.down("sm"));
 
   return (
     <Box
@@ -36,14 +39,16 @@ export default function CustomDateTimePicker({ dateAndTime, setDateAndTime }) {
           display: "flex",
           flexDirection: "column",
           alignItems: "start",
+          maxHeight: "10%",
         }}
       >
-        <Typography variant="h5">Target Date & Time</Typography>
+        <Typography variant="h6">Target Date & Time</Typography>
         <LocalizationProvider dateAdapter={AdapterDayjs}>
           <StaticDateTimePicker
-            orientation="landscape"
+            orientation={isSmallScreen ? "portrait" : "landscape"}
             onAccept={handleSetDateTime}
             defaultValue={dayjs(dateAndTime)}
+            slotProps={{ textField: { size: "small" } }}
           />
         </LocalizationProvider>
       </Box>
