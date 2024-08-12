@@ -11,6 +11,7 @@ const readData = async () => {
     return json;
   } catch (err) {
     console.error(`Failed to fetch data from ${serverUrl}/api/data: `, err);
+    throw new Error("Server is down");
   }
 };
 

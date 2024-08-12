@@ -28,7 +28,9 @@ function App() {
       setBannerData(data);
       setLoading(false);
     } catch (error) {
-      setErrorMessage("Please wait while the server container is spun up");
+      setErrorMessage(
+        "Please wait while the server container is being spun up, usually takes ~ 50s"
+      );
       setLoading(false);
     }
   };
@@ -56,13 +58,17 @@ function App() {
           >
             <CircularProgress />
             <Typography variant="h6" sx={{ marginLeft: "1rem" }}>
-              {errorMessage || "Loading..."}
+              Loading...
             </Typography>
           </Box>
+        ) : errorMessage ? (
+          <Typography variant="h4" align="center" sx={{ marginTop: "2rem" }}>
+            {errorMessage}
+          </Typography>
         ) : bannerData?.visible ? (
           <Banner bannerData={bannerData} />
         ) : (
-          <Typography variant="h4">
+          <Typography variant="h4" align="center" sx={{ marginTop: "2rem" }}>
             Please choose a date and time to show the timer
           </Typography>
         )}
