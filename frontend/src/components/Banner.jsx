@@ -3,6 +3,11 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
 import Link from "@mui/material/Link";
+import { red } from "@mui/material/colors";
+
+const redStyle = {
+  color: red[700],
+};
 
 export const Banner = ({ bannerData }) => {
   const calculateTimeLeft = () => {
@@ -54,13 +59,31 @@ export const Banner = ({ bannerData }) => {
           Exciting Announcement in
         </Typography>
         <Typography variant="h1" fontFamily="monospace">
-          {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
+          {`${timeLeft.days}`}
+          <span style={redStyle}>d</span>
+          {` ${timeLeft.hours}`}
+          <span style={redStyle}>h</span>
+          {` ${timeLeft.minutes}`}
+          <span style={redStyle}>m</span>
+          {` ${timeLeft.seconds}`}
+          <span style={redStyle}>s</span>
         </Typography>
         <Typography variant="h4">{bannerData.description}</Typography>
         {bannerData.link && (
           <Typography variant="h6">
-            <Link href={bannerData?.link}>Click here</Link>
-            {" "}to know more
+            <Link
+            underline="hover"
+              href={bannerData?.link}
+              sx={{
+                color: red[700],
+                "&:hover": {
+                  color: red[400],
+                },
+              }}
+            >
+              Click here
+            </Link>{" "}
+            to know more
           </Typography>
         )}
       </Box>
