@@ -14,6 +14,10 @@ app.use(
 
 const PORT = process.env.PORT || 3000;
 
+app.get("/", (req, res) => {
+  res.send("This is the root path of the server");
+});
+
 // Read data
 app.get("/api/data", async (req, res) => {
   try {
