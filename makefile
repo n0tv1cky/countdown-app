@@ -10,7 +10,7 @@ ui:
 	cd $(UI_DIR) && npm run dev
 
 build-ui:
-	cd $(UI_DIR) && npm run dev
+	cd $(UI_DIR) && vite build
 
 server:
 	cd $(SERVER_DIR) && node server.js
