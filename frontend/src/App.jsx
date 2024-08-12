@@ -12,6 +12,10 @@ import { clearDate, clearDescription, clearLink } from "./actions/deleteData";
 const darkTheme = createTheme({
   palette: {
     mode: "dark",
+    background: {
+      default:
+        "linear-gradient(90deg, rgba(22,0,0,1) 0%, rgba(40,40,40,1) 100%)",
+    },
   },
 });
 
