@@ -59,7 +59,8 @@ export const Banner = ({ bannerData }) => {
         <Typography variant="h4">{bannerData.description}</Typography>
         {bannerData.link && (
           <Typography variant="h6">
-            <Link href={bannerData?.link}>Click here to know more</Link>
+            <Link href={bannerData?.link}>Click here</Link>
+            {" "}to know more
           </Typography>
         )}
       </Box>

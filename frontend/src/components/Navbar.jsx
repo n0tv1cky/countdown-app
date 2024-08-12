@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SettingsModal from "./SettingsModal/SettingsModal";
 
-export default function Navbar({updateBannerData}) {
+export default function Navbar({ updateBannerData }) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
