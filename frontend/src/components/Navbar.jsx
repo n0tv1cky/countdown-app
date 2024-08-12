@@ -13,7 +13,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Menu from "@mui/material/Menu";
 import SettingsModal from "./SettingsModal/SettingsModal";
 
-export default function Navbar() {
+export default function Navbar({updateBannerData}) {
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
 
@@ -79,7 +79,7 @@ export default function Navbar() {
               >
                 {/* <MenuItem onClick={handleClose}>My account</MenuItem> */}
                 <MenuItem onClick={handleClose}>
-                  <SettingsModal />
+                  <SettingsModal updateBannerData={updateBannerData} />
                 </MenuItem>
               </Menu>
             </div>

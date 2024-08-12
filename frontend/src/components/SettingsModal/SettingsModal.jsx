@@ -31,7 +31,7 @@ const style = {
   gap: "2rem",
 };
 
-export default function SettingsModal() {
+export default function SettingsModal({ updateBannerData }) {
   const [modalOpen, setModalOpen] = React.useState(false);
   const [confirmationOpen, setConfirmationOpen] = useState(false);
   const [changesSaved, setChangesSaved] = useState(false);
@@ -66,6 +66,7 @@ export default function SettingsModal() {
     };
     console.log("Data being sent to /update:", data);
     updateData(data);
+    updateBannerData(data);
     setModalOpen(false);
   };
 

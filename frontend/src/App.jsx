@@ -17,12 +17,18 @@ const darkTheme = createTheme({
 
 function App() {
   const [bannerData, setBannerData] = useState("No target time set");
-  useEffect(() => {
-    const fetchData = async () => {
-      const data = await readData();
-      setBannerData(data);
-    };
 
+  const fetchData = async () => {
+    const data = await readData();
+    setBannerData(data);
+  };
+
+  const updateBannerData = (data) => {
+    console.log("updateBannerData");
+    setBannerData(data);
+  };
+
+  useEffect(() => {
     fetchData();
 
     // updateData({
@@ -36,15 +42,11 @@ function App() {
     // clearLink();
   }, []);
 
-  // useEffect(() => {
-  //   console.log("bannerData", bannerData);
-  // }, [bannerData]);
-
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Box>
-        <Navbar />
+        <Navbar updateBannerData={updateBannerData} />
         {bannerData.visible ? (
           <Banner bannerData={bannerData} />
         ) : (
