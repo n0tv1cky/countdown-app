@@ -16,25 +16,36 @@ const darkTheme = createTheme({
 });
 
 function App() {
+  const [bannerData, setBannerData] = useState("No target time set");
   useEffect(() => {
-    // readData();
-    updateData({
-      description: "New description",
-      targetTime: "2023-12-31T23:59:59Z",
-      link: "https://example.com",
-      visible: true,
-    });
+    const fetchData = async () => {
+      const data = await readData();
+      setBannerData(data);
+    };
+
+    fetchData();
+
+    // updateData({
+    //   description: "New description",
+    //   targetTime: "2023-12-31T23:59:59Z",
+    //   link: "https://example.com",
+    //   visible: true,
+    // });
     // clearDescription();
     // clearDate();
     // clearLink();
   }, []);
+
+  // useEffect(() => {
+  //   console.log("bannerData", bannerData);
+  // }, [bannerData]);
 
   return (
     <ThemeProvider theme={darkTheme}>
       <CssBaseline />
       <Box>
         <Navbar />
-        <Banner />
+        <Banner bannerData={bannerData} />
       </Box>
     </ThemeProvider>
   );
