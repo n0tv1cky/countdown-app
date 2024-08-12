@@ -14,6 +14,7 @@ import { BannerLink } from "./BannerLink";
 import ConfirmationDialog from "../ConfirmationDialog";
 import { updateData } from "../../actions/updateData";
 import { readData } from "../../actions/readData";
+import CloseIcon from "@mui/icons-material/Close";
 
 const style = {
   position: "absolute",
@@ -127,12 +128,22 @@ export default function SettingsModal({ updateBannerData }) {
               }}
             >
               <Button variant="outlined" color="success" onClick={handleSave}>
-                Save
-              </Button>
-              <Button variant="outlined" color="error" onClick={handleCancel}>
-                Cancel
+                Save All Changes
               </Button>
             </Box>
+            <Button
+              sx={{
+                position: "absolute",
+                top: "2rem",
+                right: "2rem",
+                borderRadius: "2rem",
+              }}
+              variant="outlined"
+              color="error"
+              onClick={handleCancel}
+            >
+              <CloseIcon />
+            </Button>
           </Box>
         </Fade>
       </Modal>
