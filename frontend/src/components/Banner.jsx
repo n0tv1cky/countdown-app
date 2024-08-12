@@ -2,6 +2,8 @@ import { Typography } from "@mui/material";
 import React from "react";
 import Box from "@mui/material/Box";
 import { useState, useEffect } from "react";
+import Link from "@mui/material/Link";
+
 export const Banner = ({ bannerData }) => {
   const calculateTimeLeft = () => {
     const targetTime = new Date(bannerData.targetTime).getTime();
@@ -54,6 +56,12 @@ export const Banner = ({ bannerData }) => {
         <Typography variant="h1" fontFamily="monospace">
           {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s`}
         </Typography>
+        <Typography variant="h4">{bannerData.description}</Typography>
+        {bannerData.link && (
+          <Typography variant="h6">
+            <Link href={bannerData?.link}>Click here to know more</Link>
+          </Typography>
+        )}
       </Box>
     </>
   );
