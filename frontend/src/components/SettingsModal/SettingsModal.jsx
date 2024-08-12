@@ -55,6 +55,7 @@ export default function SettingsModal() {
   };
 
   const handleSave = () => {
+    // Add all db update functions
     setModalOpen(false);
   };
 
