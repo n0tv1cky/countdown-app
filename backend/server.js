@@ -29,6 +29,7 @@ app.get("/api/data", async (req, res) => {
 // Update data
 app.put("/api/update", async (req, res) => {
   const { description, targetTime, link, visible } = req.body;
+  console.log("Received data:", { description, targetTime, link, visible });
   try {
     const data = await prisma.banner.update({
       where: { id: 1 },

@@ -45,7 +45,13 @@ function App() {
       <CssBaseline />
       <Box>
         <Navbar />
-        <Banner bannerData={bannerData} />
+        {bannerData.visible ? (
+          <Banner bannerData={bannerData} />
+        ) : (
+          <Typography variant="h3">
+            Please choose a date and time to show timer
+          </Typography>
+        )}
       </Box>
     </ThemeProvider>
   );

@@ -12,6 +12,7 @@ import { BannerDescription } from "./BannerDescription";
 import { BannerTargetDateAndTime } from "./BannerTargetDateAndTime";
 import { BannerLink } from "./BannerLink";
 import ConfirmationDialog from "../ConfirmationDialog";
+import { updateData } from "../../actions/updateData";
 
 const style = {
   position: "absolute",
@@ -36,7 +37,7 @@ export default function SettingsModal() {
   const [changesSaved, setChangesSaved] = useState(false);
   const [visibleSwitchOn, setVisibleSwitchOn] = useState(true);
   const [description, setDescription] = useState("");
-  const [dateAndTime, setDateAndTime] = useState(null);
+  const [dateAndTime, setDateAndTime] = useState("");
   const [link, setLink] = useState("");
 
   const handleOpen = () => {
@@ -56,6 +57,15 @@ export default function SettingsModal() {
 
   const handleSave = () => {
     // Add all db update functions
+    // console.log("dateAndTime: ", dateAndTime);
+    const data = {
+      description: description,
+      targetTime: dateAndTime,
+      link: link,
+      visible: visibleSwitchOn,
+    };
+    console.log("Data being sent to /update:", data);
+    updateData(data);
     setModalOpen(false);
   };
 
